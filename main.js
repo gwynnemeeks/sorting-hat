@@ -40,6 +40,8 @@ function addStudent (nameArgument) {
 
     addStudent('Gwynne Meeks');
 
+   
+
 const printToDom = (selector, textToPrint) => {
     document.querySelector(selector).innerHTML = textToPrint;
   };
@@ -65,8 +67,13 @@ const printToDom = (selector, textToPrint) => {
         printToDom('#dumbledoresArmy', domString);
   }
 
+  const clickEvents = () => {
+    document.querySelector("#sort").addEventListener("click", addStudent);
+    };
+
   const init = () => {
       buildHouses(students);
+      clickEvents();
   }
 
   init();
