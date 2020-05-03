@@ -40,6 +40,7 @@ const addStudent = (nameArgument) => {
 //testing addStudnet
     addStudent('Gwynne Meeks');
 
+
 const clickEvents = () => {
     document.getElementById("#sortingHat").addEventListener("click", addStudent);
         };
@@ -68,7 +69,6 @@ const buildHouses = (studentBody) => {
     }
         printToDom('#dumbledoresArmy', domString);
   }
-
 
 
 const init = () => {
