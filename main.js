@@ -25,26 +25,6 @@ let students = [
     },
 ];
 
-const addStudent = (nameArgument) => {
-    let newStudent = {
-        name: nameArgument,
-        house: 'Slytherin',
-        imgUrl: 'https://vignette.wikia.nocookie.net/harrypotter/images/7/72/Ccd53034-c798-452a-8032-f28e06250d8f.jpg/revision/latest/scale-to-width-down/160?cb=20160729150848',
-        expelled: false,
-    }
-    
-    students.push(newStudent);
-    
-    console.log(students);
-};
-//testing addStudnet
-    addStudent('Gwynne Meeks');
-
-
-const clickEvents = () => {
-    document.getElementById("#sortingHat").addEventListener("click", addStudent);
-        };
-
 const printToDom = (selector, textToPrint) => {
     document.querySelector(selector).innerHTML = textToPrint;
   };
@@ -70,10 +50,32 @@ const buildHouses = (studentBody) => {
         printToDom('#dumbledoresArmy', domString);
   }
 
+const addStudent = (nameArgument) => {
+    let newStudent = {
+        name: nameArgument,
+        house: 'Slytherin',
+        imgUrl: 'https://vignette.wikia.nocookie.net/harrypotter/images/7/72/Ccd53034-c798-452a-8032-f28e06250d8f.jpg/revision/latest/scale-to-width-down/160?cb=20160729150848',
+        expelled: false,
+    }
+
+    students.push(newStudent);
+    buildHouses(students);
+    console.log(students);
+};
+//testing addStudnet
+    addStudent('Gwynne Meeks');
+
+const clickEvents = () => {
+    //document.querySelector()
+    document.getElementById("sort").addEventListener("click", function(event){
+        const newStudent = document.querySelector("#sortingHat").value;
+        addStudent(newStudent);
+    });
+};
 
 const init = () => {
     buildHouses(students);
     clickEvents();
-  }
+}
 
 init();
