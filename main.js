@@ -25,48 +25,57 @@ let students = [
     },
 ];
 
-function addStudent (nameArgument) {
-    let newStudent = {
-        name: nameArgument,
-        house: 'Slytherin',
-        imgUrl: 'https://vignette.wikia.nocookie.net/harrypotter/images/7/72/Ccd53034-c798-452a-8032-f28e06250d8f.jpg/revision/latest/scale-to-width-down/160?cb=20160729150848',
-        expelled: false,
-    }
-    
-    students.push(newStudent);
-    
-    console.log(students);
-};
-
-    addStudent('Gwynne Meeks');
-
 const printToDom = (selector, textToPrint) => {
     document.querySelector(selector).innerHTML = textToPrint;
   };
 
-  const buildHouses = (studentBody) => {
-      let domString = '';
+const buildHouses = (studentBody) => {
+    let domString = '';
 
     for (let i = 0; i < studentBody.length; i++) {
         domString += `
             <div class="row row-cols-1 row-cols-md-2">
-            <div class="col mb-4">
-            <div class="card" style="width: 18rem;">
-            <div class="card students">
-            <h2 class="card-title">${studentBody[i].name}</h2>
-            <img src="${studentBody[i].imgUrl}" class="card-img-top" alt="${studentBody[i].house}>
-            <h4 class="card-title">${studentBody[i].house}</h4>
-            </div>
-            </div> 
-            </div>
+                <div class="col mb-4">
+                    <div class="card" style="width: 18rem;">
+                        <div class="card students">
+                            <h2 class="card-title">${studentBody[i].name}</h2>
+                            <img src="${studentBody[i].imgUrl}" class="card-img-top" alt="${studentBody[i].house}>
+                            <h4 class="card-title">${studentBody[i].house}</h4>
+                        </div>
+                    </div> 
+                </div>
             </div>       
         `;
     }
         printToDom('#dumbledoresArmy', domString);
   }
 
-  const init = () => {
-      buildHouses(students);
-  }
+const addStudent = (nameArgument) => {
+    let newStudent = {
+        name: nameArgument,
+        house: 'Slytherin',
+        imgUrl: 'https://vignette.wikia.nocookie.net/harrypotter/images/7/72/Ccd53034-c798-452a-8032-f28e06250d8f.jpg/revision/latest/scale-to-width-down/160?cb=20160729150848',
+        expelled: false,
+    }
 
-  init();
+    students.push(newStudent);
+    buildHouses(students);
+    console.log(students);
+};
+//testing addStudnet
+    addStudent('Gwynne Meeks');
+
+const clickEvents = () => {
+    //document.querySelector()
+    document.getElementById("sort").addEventListener("click", function(event){
+        const newStudent = document.querySelector("#sortingHat").value;
+        addStudent(newStudent);
+    });
+};
+
+const init = () => {
+    buildHouses(students);
+    clickEvents();
+}
+
+init();
